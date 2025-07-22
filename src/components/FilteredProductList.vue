@@ -3,13 +3,14 @@
     <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">Nos Produits</h1>
 
     <!-- Filtres -->
-    <div class="flex flex-wrap justify-center gap-4 mb-8">
+    <!-- Filtres -->
+    <div class="flex gap-4 mb-8 overflow-x-auto scrollbar-hide px-1 sm:justify-center">
       <button
         v-for="cat in categories"
         :key="cat"
         @click="activeCategory = cat"
         :class="[
-          'px-4 py-2 rounded-full border font-medium',
+          'flex-shrink-0 px-4 py-2 rounded-full border font-medium whitespace-nowrap',
           activeCategory === cat
             ? 'bg-[#00353F] text-white border-[#00353F]'
             : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100',
