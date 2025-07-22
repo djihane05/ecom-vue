@@ -14,7 +14,9 @@
 
       <!-- Texte d'accueil -->
       <div class="absolute inset-0 flex items-center justify-center z-10">
-        <h1 class="text-white text-3xl md:text-5xl font-bold bg-black/60 px-8 py-4 rounded-lg">
+        <h1
+          class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#FFBF66] via-white to-[#FFBF66] animate-gradient"
+        >
           Bienvenue dans DJIHANE TECH
         </h1>
       </div>
@@ -66,5 +68,18 @@ onBeforeUnmount(() => {
 .slide-fade-leave-to {
   opacity: 0;
   transform: translateX(-100%);
+}
+@keyframes gradientMove {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200%;
+  animation: gradientMove 6s linear infinite;
 }
 </style>

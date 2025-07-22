@@ -34,7 +34,9 @@
         </button>
 
         <!-- Links (desktop) -->
-        <nav class="hidden md:flex space-x-6 text-gray-300 font-semibold text-lg">
+        <nav
+          class="hidden md:flex space-x-6 text-gray-300 font-semibold text-lg relative items-center"
+        >
           <RouterLink
             to="/"
             class="hover:text-[#FFBF66] transition duration-200"
@@ -49,10 +51,17 @@
           >
           <RouterLink
             to="/panier"
-            class="hover:text-[#FFBF66] transition duration-200"
+            class="relative hover:text-[#FFBF66] transition duration-200"
             active-class="text-[#FFBF66] font-bold"
-            >Panier</RouterLink
           >
+            Panier
+            <span
+              v-if="cartCount > 0"
+              class="absolute -top-3 -right-5 bg-[#FFBF66] text-black text-xs font-bold rounded-full px-2 py-0.5"
+            >
+              {{ cartCount }}
+            </span>
+          </RouterLink>
         </nav>
       </div>
 
@@ -77,11 +86,18 @@
         >
         <RouterLink
           to="/panier"
-          class="block hover:text-[#FFBF66] transition duration-200"
+          class="block relative hover:text-[#FFBF66] transition duration-200"
           active-class="text-[#FFBF66] font-bold"
           @click="isOpen = false"
-          >Panier</RouterLink
         >
+          Panier
+          <span
+            v-if="cartCount > 0"
+            class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-[#FFBF66] text-black text-xs font-bold rounded-full px-2 py-0.5"
+          >
+            {{ cartCount }}
+          </span>
+        </RouterLink>
       </div>
     </header>
 
@@ -98,9 +114,13 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import Logo from '@/assets/images/logo.png'
+import { useCartStore } from '@/stores/cart'
 
 const isOpen = ref(false)
+
+const cart = useCartStore()
+const cartCount = computed(() => cart.items.length)
 </script>
