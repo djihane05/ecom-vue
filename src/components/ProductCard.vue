@@ -2,7 +2,12 @@
   <div
     class="relative bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-2xl transition duration-300"
   >
-    <img :src="product.image" :alt="product.title" class="w-full h-48 object-cover rounded" />
+    <img
+      :src="product.image"
+      :alt="product.title"
+      class="w-full h-48 object-cover rounded"
+      loading="lazy"
+    />
 
     <div class="p-4 flex flex-col justify-between min-h-[220px]">
       <div>
