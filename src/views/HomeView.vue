@@ -1,37 +1,70 @@
 <template>
   <DefaultLayout>
-    <div
-      class="min-h-screen bg-cover bg-center flex items-center justify-center"
-      :style="{
-        backgroundImage: `url(${Image})`,
-      }"
-    >
-      <transition name="fade-up" appear>
-        <h2
-          class="text-2xl font-semibold text-white bg-black/50 px-6 py-4 rounded-lg shadow-md md:text-4xl"
-        >
+    <div class="relative h-screen w-full overflow-hidden">
+      <!-- Slideshow -->
+      <transition-group name="slide-fade" tag="div" class="absolute inset-0 w-full h-full">
+        <img
+          v-for="(img, i) in images"
+          v-show="i === current"
+          :key="i"
+          :src="img"
+          class="absolute w-full h-full object-cover"
+        />
+      </transition-group>
+
+      <!-- Texte d'accueil -->
+      <div class="absolute inset-0 flex items-center justify-center z-10">
+        <h1 class="text-white text-3xl md:text-5xl font-bold bg-black/60 px-8 py-4 rounded-lg">
           Bienvenue dans DJIHANE TECH
-        </h2>
-      </transition>
+        </h1>
+      </div>
     </div>
   </DefaultLayout>
 </template>
 
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
-import Image from '@/assets/images/Image.jpg'
+
+import image1 from '../assets/images/Image.jpg'
+import image2 from '../assets/images/manette.jpg'
+import image3 from '../assets/images/Image3.jpg'
+
+const images = [image1, image2, image3]
+const current = ref(0)
+let interval
+
+onMounted(() => {
+  interval = setInterval(() => {
+    current.value = (current.value + 1) % images.length
+  }, 5000) // change toutes les 5 secondes
+})
+
+onBeforeUnmount(() => {
+  clearInterval(interval)
+})
 </script>
 
 <style scoped>
-.fade-up-enter-active {
-  transition: all 0.8s ease;
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 1s ease;
+  position: absolute;
 }
-.fade-up-enter-from {
+.slide-fade-enter-from {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateX(100%);
 }
-.fade-up-enter-to {
+.slide-fade-enter-to {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
+}
+.slide-fade-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+.slide-fade-leave-to {
+  opacity: 0;
+  transform: translateX(-100%);
 }
 </style>
