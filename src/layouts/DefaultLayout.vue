@@ -8,7 +8,7 @@
         </RouterLink>
 
         <!-- Hamburger Icon for mobile -->
-        <button class="md:hidden text-white focus:outline-none" @click="isOpen = !isOpen">
+        <button class="md:hidden text-[#FFBF66] focus:outline-none" @click="isOpen = !isOpen">
           <svg
             class="w-8 h-8"
             fill="none"
