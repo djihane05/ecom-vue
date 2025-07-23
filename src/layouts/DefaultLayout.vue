@@ -55,11 +55,34 @@
             active-class="text-[#FFBF66] font-bold"
           >
             Panier
-            <span
-              v-if="cartCount > 0"
-              class="absolute -top-3 -right-5 bg-[#FFBF66] text-black text-xs font-bold rounded-full px-2 py-0.5"
+          </RouterLink>
+          <RouterLink
+            to="/panier"
+            class="relative hover:text-[#FFBF66] transition duration-200"
+            active-class="text-[#FFBF66] font-bold"
+          >
+            <!-- Icône panier (SVG) -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-7 w-7"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              {{ cartCount }}
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m0 0h14m-14 0a1 1 0 001 1h12a1 1 0 001-1m-4-9v6"
+              />
+            </svg>
+
+            <!-- Badge -->
+            <span
+              v-if="cart.itemCount > 0"
+              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full"
+            >
+              {{ cart.itemCount }}
             </span>
           </RouterLink>
         </nav>
@@ -91,12 +114,6 @@
           @click="isOpen = false"
         >
           Panier
-          <span
-            v-if="cartCount > 0"
-            class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-[#FFBF66] text-black text-xs font-bold rounded-full px-2 py-0.5"
-          >
-            {{ cartCount }}
-          </span>
         </RouterLink>
       </div>
     </header>

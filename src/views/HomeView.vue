@@ -39,7 +39,7 @@ let interval
 onMounted(() => {
   interval = setInterval(() => {
     current.value = (current.value + 1) % images.length
-  }, 5000) // change toutes les 5 secondes
+  }, 3000) // change toutes les 5 secondes
 })
 
 onBeforeUnmount(() => {
