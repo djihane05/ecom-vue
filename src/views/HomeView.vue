@@ -1,16 +1,14 @@
 <template>
   <DefaultLayout>
     <div class="relative h-screen w-full overflow-hidden">
-      <!-- Slideshow -->
-      <transition-group name="slide-fade" tag="div" class="absolute inset-0 w-full h-full">
+      <!-- Slideshow optimisé -->
+      <transition name="slide-fade" tag="div" class="absolute inset-0 w-full h-full">
         <img
-          v-for="(img, i) in images"
-          v-show="i === current"
-          :key="i"
-          :src="img"
-          class="absolute w-full h-full object-cover"
+          :src="images[current]"
+          :key="current"
+          class="absolute inset-0 w-full h-full object-cover"
         />
-      </transition-group>
+      </transition>
 
       <!-- Texte d'accueil -->
       <div class="absolute inset-0 flex items-center justify-center z-10">
